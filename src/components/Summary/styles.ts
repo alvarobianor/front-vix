@@ -1,5 +1,5 @@
 import styled from "styled-components";
-
+import Image from "next/image";
 export const Container = styled.div`
   display: grid;
 
@@ -24,6 +24,11 @@ export const Container = styled.div`
       display: flex;
       align-items: center;
       justify-content: space-between;
+      .test {
+        width: 3rem;
+        height: 3rem;
+        padding: 2rem;
+      }
     }
 
     strong {
@@ -34,4 +39,9 @@ export const Container = styled.div`
       line-height: 3rem;
     }
   }
+`;
+
+export const Imgg = styled(Image)`
+  width: 0.5rem;
+  height: 0.5rem;
 `;

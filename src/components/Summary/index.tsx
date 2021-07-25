@@ -3,7 +3,7 @@ import IncomeImg from "../../assets/income.svg";
 import OutcomeImg from "../../assets/outcome.svg";
 import Totalimg from "../../assets/total.svg";
 import { useTransaction } from "../../hooks/useTransaction";
-import Image from "next/image";
+
 export function Summary() {
   const { transactions } = useTransaction();
 
@@ -31,7 +31,9 @@ export function Summary() {
       <div>
         <header>
           <p>Entradas</p>
-          <Image src={IncomeImg} width={12} height={12} alt="IncomeImg" />
+          <div className="test">
+            <S.Imgg src={IncomeImg} alt="IncomeImg" />
+          </div>
         </header>
         <strong>
           {new Intl.NumberFormat("pt-br", {
@@ -44,7 +46,7 @@ export function Summary() {
       <div>
         <header>
           <p>Saídas</p>
-          <Image src={OutcomeImg} alt="OutcomeImg" />
+          <S.Imgg src={OutcomeImg} alt="OutcomeImg" />
         </header>
         <strong>
           {new Intl.NumberFormat("pt-br", {
@@ -58,7 +60,7 @@ export function Summary() {
       <div className="highlight-background">
         <header>
           <p>Balanço</p>
-          <Image src={Totalimg} alt="Totalimg" />
+          <S.Imgg src={Totalimg} alt="Totalimg" />
         </header>
         <strong>
           {new Intl.NumberFormat("pt-br", {
