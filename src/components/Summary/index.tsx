@@ -27,26 +27,30 @@ export function Summary() {
   );
 
   return (
-    <S.Container>
-      <div>
-        <header>
-          <p>Entradas</p>
-          <div className="test">
-            <S.Imgg src={IncomeImg} alt="IncomeImg" />
-          </div>
-        </header>
-        <strong>
+    <S.ContainerB>
+      <header>
+        <p>Filtros:</p>
+      </header>
+      {/* <button>Pendente</button>
+      <button>Concluído</button>
+      <button>Cancelado</button> */}
+
+      <select>
+        <option value="PENDENTE">Pendente</option>
+        <option value="CONCLUIDO">Concluido</option>
+        <option value="CANCELADO">Cancelado</option>
+      </select>
+
+      {/* <strong>
           {new Intl.NumberFormat("pt-br", {
             style: "currency",
             currency: "BRL",
           }).format(sumary.deposits)}
-        </strong>
-      </div>
+        </strong> */}
 
-      <div>
+      {/* <div>
         <header>
           <p>Saídas</p>
-          <S.Imgg src={OutcomeImg} alt="OutcomeImg" />
         </header>
         <strong>
           {new Intl.NumberFormat("pt-br", {
@@ -56,11 +60,9 @@ export function Summary() {
         </strong>
       </div>
 
-      {/* verificar se o balanço é positivo e mudar a cor de fundo de acordo com o valor  */}
       <div className="highlight-background">
         <header>
           <p>Balanço</p>
-          <S.Imgg src={Totalimg} alt="Totalimg" />
         </header>
         <strong>
           {new Intl.NumberFormat("pt-br", {
@@ -68,7 +70,7 @@ export function Summary() {
             currency: "BRL",
           }).format(sumary.total)}
         </strong>
-      </div>
-    </S.Container>
+      </div> */}
+    </S.ContainerB>
   );
 }

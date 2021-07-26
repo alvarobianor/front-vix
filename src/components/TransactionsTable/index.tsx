@@ -2,7 +2,6 @@ import * as S from "./styles";
 import { useTransaction } from "../../hooks/useTransaction";
 
 export function TransactionsTable() {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { transactions } = useTransaction();
 
   return (
