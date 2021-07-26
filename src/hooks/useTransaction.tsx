@@ -10,13 +10,14 @@ import { api } from "../services/api";
 interface Filter {
   filter: string;
 }
+type Status = "PENDENTE" | "CONCLUIDO" | "CANCELADO";
 
 interface TransactionsProps {
   _id: string;
   title: string;
   description: string;
   date: string;
-  status: string;
+  status: Status;
   createdAt: string;
 }
 

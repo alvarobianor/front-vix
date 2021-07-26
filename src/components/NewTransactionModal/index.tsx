@@ -1,12 +1,12 @@
 import Modal from "react-modal";
 import * as S from "./styles";
 import CloseButtonImg from "../../assets/close.svg";
-import IncomeSvg from "../../assets/income.svg";
-import OutcomeSvg from "../../assets/outcome.svg";
-import { FormEvent, useState } from "react";
+import { FormEvent, useState, useRef } from "react";
 import { useTransaction } from "../../hooks/useTransaction";
 import Image from "next/image";
-// Modal.setAppElement("#root");
+import InputMask from "react-input-mask";
+import MaskedInput from "react-text-mask";
+Modal.setAppElement("#modal-root");
 
 interface ModalProps {
   isOpen: boolean;
@@ -19,20 +19,41 @@ export function NewTransactionModal({ isOpen, onRequestClose }: ModalProps) {
 
   const [date, setDate] = useState<string>("");
   const [status, setStatus] = useState<string>("");
-
+  let dto = "";
   const { CreateTransaction } = useTransaction();
 
   const handleConfirmTransaction = async (event: FormEvent) => {
     event.preventDefault();
 
-    await CreateTransaction({ title, type: "", category: "", value: 0 });
+    await CreateTransaction({ title, date, description, status: "PENDENTE" });
 
     setDescription("");
     setTitle("");
-    setStatus("deposit");
+    setStatus("PENDENTE");
     setDate("");
     onRequestClose();
   };
+
+  // const Input = (props: any) => (
+  //   <InputMask
+  //     mask="99/99/9999"
+  //     // alwaysShowMask={true}
+  //     value={props.value}
+  //     onChange={props.onChange}
+  //   >
+  //     {(inputProps: any) => (
+  //       <input {...inputProps} disableUnderline placeholder="dia/mês/ano" />
+  //     )}
+  //   </InputMask>
+  // );
+
+  const Input = (props: any) => (
+    <InputMask
+      mask="99/99/9999"
+      value={date}
+      onChange={(event) => setDate(event.target.value)}
+    />
+  );
 
   return (
     <Modal
@@ -88,11 +109,26 @@ export function NewTransactionModal({ isOpen, onRequestClose }: ModalProps) {
             <span>Saída</span>
           </S.TypeButton>
         </S.ContainerButtonsType> */}
-        <input
-          type="text"
-          placeholder="Data"
-          value={date}
-          onChange={(event) => setDate(event.target.value)}
+        {/* <Input /> */}
+
+        <MaskedInput
+          mask={[
+            "(",
+            /[1-9]/,
+            /\d/,
+            /\d/,
+            ")",
+            " ",
+            /\d/,
+            /\d/,
+            /\d/,
+            "-",
+            /\d/,
+            /\d/,
+            /\d/,
+            /\d/,
+          ]}
+          onChange={(event: any) => setDate(event.target.value)}
         />
 
         <button type="submit">Cadastrar</button>
