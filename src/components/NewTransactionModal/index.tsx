@@ -15,22 +15,22 @@ interface ModalProps {
 
 export function NewTransactionModal({ isOpen, onRequestClose }: ModalProps) {
   const [title, setTitle] = useState<string>("");
-  const [value, setValue] = useState<number>(0);
+  const [description, setDescription] = useState<string>("");
 
-  const [type, setType] = useState<string>("deposit");
-  const [category, setCategory] = useState<string>("");
+  const [date, setDate] = useState<string>("");
+  const [status, setStatus] = useState<string>("");
 
   const { CreateTransaction } = useTransaction();
 
   const handleConfirmTransaction = async (event: FormEvent) => {
     event.preventDefault();
 
-    await CreateTransaction({ title, type, category, value });
+    await CreateTransaction({ title, type: "", category: "", value: 0 });
 
-    setCategory("");
+    setDescription("");
     setTitle("");
-    setType("deposit");
-    setValue(0);
+    setStatus("deposit");
+    setDate("");
     onRequestClose();
   };
 
@@ -41,17 +41,19 @@ export function NewTransactionModal({ isOpen, onRequestClose }: ModalProps) {
       overlayClassName="react-modal-overlay"
       className="react-modal-content"
     >
-      <button>
-        <Image
-          src={CloseButtonImg}
-          alt="CloseButton"
-          className="close-button-modal"
-          onClick={onRequestClose}
-        />
-      </button>
+      <S.ButtonClose>
+        <button>
+          <Image
+            src={CloseButtonImg}
+            alt="CloseButton"
+            // className="close-button-modal"
+            onClick={onRequestClose}
+          />
+        </button>
+      </S.ButtonClose>
 
       <S.Container onSubmit={handleConfirmTransaction}>
-        <h2>Cadastrar transação</h2>
+        <h2>Cadastrar Atividade</h2>
         <input
           type="text"
           placeholder="Titulo"
@@ -59,13 +61,13 @@ export function NewTransactionModal({ isOpen, onRequestClose }: ModalProps) {
           onChange={(event) => setTitle(event.target.value)}
         />
         <input
-          type="number"
-          placeholder="Valor"
-          value={value}
-          onChange={(event) => setValue(Number(event.target.value))}
+          type="text"
+          placeholder="Descrição"
+          value={description}
+          onChange={(event) => setDescription(event.target.value)}
         />
 
-        <S.ContainerButtonsType>
+        {/* <S.ContainerButtonsType>
           <S.TypeButton
             type="button"
             isActive={type === "deposit"}
@@ -85,12 +87,12 @@ export function NewTransactionModal({ isOpen, onRequestClose }: ModalProps) {
             <Image src={OutcomeSvg} alt="Outcome" />
             <span>Saída</span>
           </S.TypeButton>
-        </S.ContainerButtonsType>
+        </S.ContainerButtonsType> */}
         <input
           type="text"
-          placeholder="Categoria"
-          value={category}
-          onChange={(event) => setCategory(event.target.value)}
+          placeholder="Data"
+          value={date}
+          onChange={(event) => setDate(event.target.value)}
         />
 
         <button type="submit">Cadastrar</button>

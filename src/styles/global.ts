@@ -74,7 +74,6 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   .react-modal-content{
-
     width: 100%;
     max-width: 576px;
     background: var(--background);
@@ -84,14 +83,15 @@ export const GlobalStyles = createGlobalStyle`
   }
   
   .close-button-modal {
+    width: 100%;
     position: absolute;
     right: 1.5rem;
-    top: 1.5rem;
+    top: 5.5rem;
+    left: auto;
     border: 0;
     background: transparent;
-
     transition: filter 1s;
-
+    background-color: tomato;
     &:hover {
       filter: brightness(0.85);
     }

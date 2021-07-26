@@ -1,6 +1,22 @@
 import styled from "styled-components";
 import { darken, transparentize } from "polished";
 
+export const ButtonClose = styled.div`
+  width: 1rem;
+  margin-left: auto;
+  margin-top: -1rem;
+  border: 0;
+
+  button {
+    border: 0;
+    background: transparent;
+    transition: filter 1s;
+    &:hover {
+      filter: brightness(0.85);
+    }
+  }
+`;
+
 export const Container = styled.form`
   h2 {
     color: var(--text-title);
