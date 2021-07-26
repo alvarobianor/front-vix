@@ -15,7 +15,7 @@ export function Header({ onOpenNewTransactionModal }: HeaderProps) {
           <p>{`Todo list`}</p>
         </div>
         <button type="button" onClick={onOpenNewTransactionModal}>
-          Cadastrar transação
+          Cadastrar Atividade
         </button>
       </S.Content>
     </S.Container>
